@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Churn Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px 0;
+            text-align: center;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+        .card {
+            background: white;
+            margin: 20px 0;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        .card h2 {
+            margin: 0;
+            color: #333;
+        }
+        .status {
+            font-size: 1.2em;
+            padding: 10px;
+            border-radius: 4px;
+            display: inline-block;
+            margin-top: 10px;
+        }
+        .churn {
+            background-color: #ff4c4c;
+            color: white;
+        }
+        .no-churn {
+            background-color: #4CAF50;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Customer Churn Prediction</h1>
+    </header>
+    <div class="container">
+        <div class="card">
+            <h2 id="customer-name">Customer: Alok Ranjan</h2>
+            <p>Prediction: <span class="status" id="prediction1"></span></p>
+        </div>
+    </div>
+    <script>
+        const names = ['Alok Ranjan', 'Eshwar B','Niraj H','Roma Kudale'];
+        function getRandomName() {
+            return names[Math.floor(Math.random() * names.length)];
+        }
+
+        function getRandomPrediction() {
+            return Math.random() > 0.5 ? 'Will Churn' : 'Will Not Churn';
+        }
+
+        function applyPrediction() {
+            const prediction = getRandomPrediction();
+            const name = getRandomName();
+            const predictionElement = document.getElementById('prediction1');
+            const nameElement = document.getElementById('customer-name');
+            const element=document.querySelector('#prediction1');
+
+            predictionElement.textContent = prediction;
+            nameElement.textContent = `Customer: ${name}`;
+
+            if (prediction === 'Will Churn') {
+                names.indexOf(predictionElement.textContent);
+                names.splice(names.indexOf(name), 1);
+                element.classList.add('churn');
+                element.classList.remove('no-churn');
+
+            } else {
+                element.classList.add('no-churn');
+                element.classList.remove('churn');
+            }
+        }
+
+        applyPrediction('prediction1');
+    </script>
+</body>
+</html>
